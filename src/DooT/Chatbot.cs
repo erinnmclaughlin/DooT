@@ -114,7 +114,10 @@ internal sealed class Chatbot
 
             _todoList.Add(todoItem);
 
-            return $"The following todo item was successfully added to the user's todo list:\n{JsonSerializer.Serialize(todoItem, _serializerOptions)}";
+            return $"""
+                The following todo item was successfully added to the user's todo list:
+                {JsonSerializer.Serialize(todoItem, _serializerOptions)}
+                """;
         }
 
         [KernelFunction, Description("Completes (and therefore deletes) an item on the user's todo list.")]
