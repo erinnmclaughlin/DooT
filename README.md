@@ -15,7 +15,10 @@ public string AddTodoItem(
 {
     // code to add the todo item
 
-    return $"The following todo item was successfully added to the user's todo list:\n{JsonSerializer.Serialize(todoItem, _serializerOptions)}";
+    return $"""
+        The following todo item was successfully added to the user's todo list:
+        {JsonSerializer.Serialize(todoItem, _serializerOptions)}
+        """;
 }
 ```
 
