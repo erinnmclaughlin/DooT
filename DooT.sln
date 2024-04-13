@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DooT", "src\BAI.Console\DooT.csproj", "{BE247783-98B9-4D5E-9392-C63B9DB1226C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DooT", "src\DooT\DooT.csproj", "{F3D204C4-97EB-4FC2-A2AF-A1CC45D3F517}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB70643A-8150-4695-B5C4-A0805B553EDD}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D204C4-97EB-4FC2-A2AF-A1CC45D3F517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D204C4-97EB-4FC2-A2AF-A1CC45D3F517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D204C4-97EB-4FC2-A2AF-A1CC45D3F517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D204C4-97EB-4FC2-A2AF-A1CC45D3F517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
