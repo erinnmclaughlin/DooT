@@ -88,6 +88,9 @@ internal sealed class Chatbot
     {
         private readonly List<TodoItem> _todoList = [];
 
+        [KernelFunction, Description("Gets today's date.")]
+        public DateTime GetDate() => DateTime.Today;
+
         [KernelFunction, Description("Adds a new todo item to the user's todo list.")]
         public string AddTodoItem([Description("The todo item to add to the user's todo list.")] TodoItem item)
         {
