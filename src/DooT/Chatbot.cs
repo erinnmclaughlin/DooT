@@ -12,10 +12,10 @@ internal sealed class Chatbot
 {
     private readonly OpenAIPromptExecutionSettings _aiSettings;
     private readonly Kernel _kernel;
-    private readonly ILogger<Application> _logger;
+    private readonly ILogger<Chatbot> _logger;
     private readonly ChatHistory _messages = [];
     
-    public Chatbot(Kernel kernel, ILogger<Application> logger)
+    public Chatbot(Kernel kernel, ILogger<Chatbot> logger)
     {
         _aiSettings = new()
         {
