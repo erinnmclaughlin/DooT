@@ -4,6 +4,7 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace DooT;
@@ -86,20 +87,38 @@ internal sealed class Chatbot
 
     private sealed class CustomInteractions
     {
+        private static readonly JsonSerializerOptions _serializerOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            WriteIndented = true
+        };
+
         private readonly List<TodoItem> _todoList = [];
 
-        [KernelFunction, Description("Gets today's date.")]
-        public DateTime GetDate() => DateTime.Today;
+        [KernelFunction, Description("Gets the date that is a specified number of days from today.")]
+        public static DateTime GetRelativeDate([Description("The number of days to add, relative to today.")] int daysToAdd) => DateTime.Today.AddDays(daysToAdd);
 
         [KernelFunction, Description("Adds a new todo item to the user's todo list.")]
-        public string AddTodoItem([Description("The todo item to add to the user's todo list.")] TodoItem item)
+        public string AddTodoItem(
+            [Description("The todo item description.")] string description,
+            [Description("The due date of the todo item (optional).")] DateTime? dueDate = null,
+            [Description("The priority of the todo item (optional).")] string? priority = null)
         {
-            _todoList.Add(item);
-            return "Item added to the todo list.";
+            var todoItem = new TodoItem
+            {
+                Id = _todoList.Count == 0 ? 1 : _todoList.Max(x => x.Id) + 1,
+                Description = description,
+                DueDate = dueDate,
+                Priority = priority
+            };
+
+            _todoList.Add(todoItem);
+
+            return $"The following todo item was successfully added to the user's todo list:\n{JsonSerializer.Serialize(todoItem, _serializerOptions)}";
         }
 
         [KernelFunction, Description("Completes (and therefore deletes) an item on the user's todo list.")]
-        public string MarkItemAsComplete([Description("The id of the todo item to mark as complete.")] Guid todoItemId)
+        public string MarkItemAsComplete([Description("The id of the todo item to mark as complete.")] int todoItemId)
         {
             var numberRemoved = _todoList.RemoveAll(x => x.Id == todoItemId);
             return "Marked todo item as complete. This item has now been removed from the user's todo list.";
@@ -108,23 +127,43 @@ internal sealed class Chatbot
         [KernelFunction, Description("Gets the items on the user's todo list.")]
         public string GetTodoItems()
         {
-            return JsonSerializer.Serialize(_todoList);
+            return JsonSerializer.Serialize(_todoList, _serializerOptions);
         }
 
-        [KernelFunction, Description("Modifies an existing todo item on the user's todo list.")]
-        public string UpdateTodoItem([Description("The updated todo item. The todo item ID must match the ID of the item to update.")] TodoItem updatedItem)
+        [KernelFunction, Description("Updates the description of a todo item on the user's todo list.")]
+        public string UpdateDescription([Description("The id of the todo item to update.")] int todoItemId, [Description("The new description.")] string newDescription)
         {
-            var currentItem = _todoList.SingleOrDefault(i => i.Id == updatedItem.Id);
+            var item = _todoList.SingleOrDefault(x => x.Id == todoItemId);
 
-            if (currentItem is null)
-            {
-                return $"Did not find a todo item with the id {updatedItem.Id}.";
-            }
+            if (item is null)
+                return $"Did not find a todo item with the id {todoItemId}.";
 
-            var index = _todoList.IndexOf(currentItem);
-            _todoList[index] = updatedItem;
+            item.Description = newDescription;
+            return "Todo item description was updated.";
+        }
 
-            return "Todo item was updated.";
+        [KernelFunction, Description("Updates the due date of a todo item on the user's todo list.")]
+        public string UpdateDueDate([Description("The id of the todo item to update.")] int todoItemId, [Description("The new due date.")] DateTime newDueDate)
+        {
+            var item = _todoList.SingleOrDefault(x => x.Id == todoItemId);
+
+            if (item is null)
+                return $"Did not find a todo item with the id {todoItemId}.";
+
+            item.DueDate = newDueDate;
+            return "Todo item due date was updated.";
+        }
+
+        [KernelFunction, Description("Updates the priority of a todo item on the user's todo list.")]
+        public string UpdatePriority([Description("The id of the todo item to update.")] int todoItemId, [Description("The new priority.")] string newPriority)
+        {
+            var item = _todoList.SingleOrDefault(x => x.Id == todoItemId);
+
+            if (item is null)
+                return $"Did not find a todo item with the id {todoItemId}.";
+
+            item.Priority = newPriority;
+            return "Todo item priority was updated.";
         }
     }
 }
