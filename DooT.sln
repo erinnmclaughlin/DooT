@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DooT", "src\BAI.Console\DooT.csproj", "{BE247783-98B9-4D5E-9392-C63B9DB1226C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE247783-98B9-4D5E-9392-C63B9DB1226C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {559813A1-32C4-44E4-94D8-823BB26A9D77}
+	EndGlobalSection
+EndGlobal
