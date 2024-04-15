@@ -3,7 +3,6 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace DooT;
@@ -12,14 +11,14 @@ internal sealed class Chatbot
 {
     private readonly OpenAIPromptExecutionSettings _aiSettings;
     private readonly Kernel _kernel;
-    private readonly ILogger<Application> _logger;
+    private readonly ILogger _logger;
     private readonly ChatHistory _messages = [];
     
-    public Chatbot(Kernel kernel, ILogger<Application> logger)
+    public Chatbot(Kernel kernel, ILogger<Chatbot> logger)
     {
         _aiSettings = new()
         {
-            MaxTokens = 250,
+            MaxTokens = 512,
             ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
         };
 
