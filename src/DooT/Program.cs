@@ -1,5 +1,4 @@
-﻿using BAI.ConsoleApp;
-using DooT;
+﻿using DooT;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

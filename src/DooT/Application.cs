@@ -1,6 +1,4 @@
-﻿using DooT;
-
-namespace BAI.ConsoleApp;
+﻿namespace DooT;
 
 internal sealed class Application(Chatbot doot)
 {
@@ -53,7 +51,7 @@ internal sealed class Application(Chatbot doot)
         Console.ResetColor();
     }
 
-    private static void WriteMessage( string? content)
+    private static void WriteMessage(string? content)
     {
         Console.WriteLine(content);
         Console.WriteLine();

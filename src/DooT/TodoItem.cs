@@ -1,4 +1,4 @@
-﻿namespace BAI.ConsoleApp;
+﻿namespace DooT;
 
 public class TodoItem
 {

@@ -1,4 +1,4 @@
-﻿namespace BAI.ConsoleApp;
+﻿namespace DooT;
 
 internal sealed class AIOptions
 {
